@@ -12,7 +12,7 @@
 		<li><a href="index.html">Home</a></li>
 		<li><a href="gallery.html">Gallery</a></li>
 		<li><a href="about.html">About</a></li>
-		<li><a href="contact.html">Contact</a>
+        <li><a href="contact.html">Contact</a></li>
 	</ul>
 
 	<h1>RadicalPhoto</h1>
@@ -20,29 +20,78 @@
 </div>
 
 <div id="main_wrapper">
-
 	<div id="content">
-	<h2>Contact RadicalPhoto</h2>
-
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-
-	<form action="http://derekallard.com/echo.php" method="post" id="myform">
-
-		<p class="errors">All fields are required.</p>
-
-		<p><label>Name: <input type="text" size="25" name="name" id="username"></label></p>
-		<p><label>Email: <input type="text" size="25" name="email" id="email"></label></p>
-		<p><label>Message:<br> <textarea cols="50" rows="5" name="message" id="my_message"></textarea></label></p>
-		<p><input type="submit" value="Contact Us"></p>
-	</form>
-
-	</div>
-
-	<div id="footer">
-	<p>All content &copy; Copyright</p>
-	</div>
-
+        <h2>Contact RadicalPhoto</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        <form action="http://derekallard.com/echo.php" method="post" id="myform">
+            <p id="errors" class="errors">All fields are required.</p>
+            <p><label id="name_label" for="username">Name: <input type="text" size="25" name="name" id="username"></label> <small id="name_empty" class="errors">&nbsp;&#42;Your name is important for us!</small></p>
+            <p><label id="email_label" for="email">Email: <input type="text" size="25" name="email" id="email"></label><small class="errors" id="email_empty">&nbsp;&#42;Please, enter your email</small></p>
+            <p><label id="message_label" for="message">Message:<br> <textarea cols="50" rows="5" name="message" id="message"></textarea><small class="errors" id="message_empty">&nbsp;&#42;What was your message, again? </small></label></p>
+            <p><input type="submit" value="Contact Us" id="submit_btn"></p>
+        </form>
+        <div id="footer">
+        <p>All content &copy; Copyright</p>
+        </div>
+    </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+        var myForm = $('#myform');        
+        var submitBtn = $('#submit_btn');
+        var thename = $('#username');
+        var theemail = $('#email');
+        var themessage = $('#message');
+        var warning = $('#errors');
+        var name_warning = $('#name_empty');
+        var email_warning = $('#email_empty');
+        var message_warning = $('#message_empty');
+    
+        myForm.submit(function(){
+           var errors = 0;
+           var userName = thename.val();
+           var userEmail = theemail.val();
+           var userMessage = themessage.val();
+                      
+           if(userName == ''){
+                thename.css({
+                   border: '1px solid #C00' 
+                });
+                thename.css({boxShadow: '0 0 5px #C00' });
+                name_warning.css({display: 'initial'});
+           } else {
+                thename.css({border: '1px solid #449D44'});
+                thename.css({boxShadow: 'none'});
+                name_warning.css({display: 'none'});
+           }
+           
+           if(userEmail == ''){
+                theemail.css({border: '1px solid #C00'});
+                theemail.css({boxShadow: '0 0 5px #C00'});
+                email_warning.css({display: 'initial'});
+                errors=errors+1;
+           } else {                
+                theemail.css({border: '1px solid #449D44'});
+                theemail.css({boxShadow: 'none'});
+                email_warning.css({display: 'none'});
+           }
+           
+           if(userMessage == ''){
+                themessage.css({border: '1px solid #C00'});
+                themessage.css({boxShadow: '0 0 5px #C00'});
+                message_warning.css({display: 'initial'});
+                errors=errors+1;
+           } else {  
+                themessage.css({border: '1px solid #449D44'});
+                themessage.css({boxShadow: 'none'});
+                message_warning.css({display: 'none'});               
+           }
+           
+           if(errors > 0){
+              return false;               
+           }
+          
+       });    
+</script>
 </body>
 </html>

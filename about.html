@@ -45,6 +45,22 @@
 	</div>
 
 </div>
-
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        var bio = $('#bio');
+         bio.hide(600);
+        $('#bios > a').mouseover(function(){
+            var bio_src = $(this).attr('href') + ' #content';
+            bio.load(bio_src);
+            bio.slideDown(600);
+        });
+        
+        $('#bios > a').mouseout(function(){
+            bio.hide(600);
+        });
+        
+        
+    </script>
 </body>
 </html>
