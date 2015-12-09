@@ -49,17 +49,25 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>
         var bio = $('#bio');
-        bio.hide(600);
-        $('#bios > a').mouseover(function(){
+                
+        $('#bios > a').click(function(event){
+            event.preventDefault();
             var bio_src = $(this).attr('href') + ' #content';
-            bio.slideDown(600);
-            bio.load(bio_src);
             
-        });
-        
-        $('#bios > a').mouseout(function(){
-            bio.hide(600);
-        });
+            if (bio.is(":visible")){
+                bio.hide(600);
+                setTimeout(function(){
+                    bio.load(bio_src);
+                    bio.slideDown(800);
+                }, 500); 
+                    
+                
+            } else {
+                bio.load(bio_src); 
+                bio.slideDown(800);     
+            } 
+              
+        });        
         
         
     </script>
